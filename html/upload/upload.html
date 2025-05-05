@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subsite</title>
+  <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+  <!-- Verstecktes File-Input für Klick-Upload -->
+  <input type="file" id="fileInput" title="Wählen Sie eine Datei zum Hochladen aus" placeholder="Keine Datei ausgewählt" style="display: none;" multiple>
+
+  <header>
+    <h2>Welcome to Pencil-Upload</h2>
+  </header>
+  <main>
+    <div class="upload-container">
+      <div id="folder-selection">
+        <label for="folderSelect">Zielordner:</label>
+        <select id="folderSelect">
+          <option value="temp">Temp</option>
+          <option value="vids">Vids</option>
+          <option value="txt">Txt</option>
+        </select>
+      </div>
+      <section id="drop-zone">
+        <!-- Container für Punkte wird per JavaScript erzeugt -->
+        <div class="content">drop here</div>
+      </section>
+    </div>
+    <section id="upload-progress">
+      <label>Upload-Progress:</label>
+      <progress id="progressBar" value="0" max="100"></progress>
+      <p id="progressText">0%</p>
+    </section>
+
+    <div class="placeholder-container">
+      <a href="../watch/watch.html">
+        <div class="placeholder">
+          <div class="content">
+            <h2>Watch</h2>
+            <p>Watch content</p>
+          </div>
+        </div>
+      </a>
+      <a href="../database/database.html">
+        <div class="placeholder">
+          <div class="content">
+            <h2>SQL</h2>
+            <p>see database</p>
+          </div>
+        </div>
+      </a>
+      <!-- Weitere Platzhalter können hier ergänzt werden -->
+    </div>
+  </main>
+  <footer>
+    <p>&copy; shit reserved 2025</p>
+  </footer>
+
+  <!-- JavaScript einbinden -->
+  <script src="points.js"></script>
+  <script src="upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+/* Globales dunkles Design */
+body {
+    background-color: #2b0d0d; /* Dunkelrot */
+    color: #ffff66; /* Helles Gelb */
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Header */
+header {
+    background-color: #400d0d; /* Weinrot */
+    padding: 10px;
+}
+
+#navigation button {
+    background-color: #ff8c00; /* Dunkelorange */
+    color: #ffff66;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#navigation button:hover {
+    background-color: #d97300;
+}
+
+/* Allgemeine Buttongestaltung */
+.btn {
+    background-color: #ff8c00; /* Dunkelorange */
+    color: #ffff66; /* Hellgelb */
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #d97300;
+}
+
+/* Horizontaler Filterbereich */
+#horizontal-filter-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #660000;
+    flex-wrap: wrap;
+    background-color: #3d0a0a;
+}
+
+/* Hauptfiltercontainer */
+#mainFilterContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Verstecken */
+.hidden {
+    display: none;
+}
+
+/* Filter-Items */
+.filter-item {
+    position: relative;
+    padding: 5px;
+    align-items: center;
+}
+
+/* Überschrift inkl. Checkbox */
+.filter-heading {
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Angepasste Checkboxes */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #b8860b;
+    border-radius: 3px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: #ffff99;
+}
+input[type="checkbox"]:checked {
+    background-color: #ffff99;
+    vertical-align: middle;
+}
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><line x1="3" y1="3" x2="13" y2="13" stroke="black" stroke-width="3"/><line x1="13" y1="3" x2="3" y2="13" stroke="black" stroke-width="3"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Filter-Submenu – standardmäßig versteckt */
+.filter-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #400d0d; /* Weinrot */
+    border: 1px solid #660000;
+    padding: 5px;
+    z-index: 10;
+    white-space: nowrap;
+    align-items: center;
+}
+/* Beim Hover über das Filter-Item wird das Submenu eingeblendet */
+.filter-item:hover .filter-submenu {
+    display: block;
+}
+
+/* Damit die dynamisch erstellten Dateityp-Checkboxes als Blockelemente erscheinen */
+#typeOptionsContainer label {
+    display: block;
+    margin: 2px 0;
+}
+
+/* Eingabefelder */
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    background-color: #3d0a0a;
+    border: 1px solid #660000;
+    color: #ffff66;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+/* Tabelle */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #660000;
+    padding: 8px;
+    text-align: left;
+    color: #ffff66;
+}
+th {
+    background-color: #400d0d;
+}
+
+/* Stil für den Edit-Button in der Namensspalte */
+.edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffff66;
+    margin-left: 5px;
+    padding: 0;
+}
+.edit-btn:hover {
+    color: #ff8c00;
+}

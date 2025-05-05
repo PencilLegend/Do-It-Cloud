@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Datenbank Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="database.css?v=22">
+</head>
+<body>
+    <header>
+        <div id="navigation">
+            <button class="btn" onclick="window.location.href='../index.html'">Zurück zur Hauptseite</button>
+        </div>
+        <h2>Datenbank-Info-Tabelle anzeigen</h2>
+    </header>
+
+    <main>
+        <!-- Horizontaler Filterbereich -->
+        <div id="horizontal-filter-panel">
+            <button class="btn" id="scanButton">Scan Manuell ausführen</button>
+            <button class="btn" id="filterToggle">Filter ein-/ausblenden</button>
+            <div id="mainFilterContainer" class="hidden">
+                <!-- Name-Filter -->
+                <div class="filter-item">
+                    <label class="filter-heading" for="nameInput">
+                        <input type="checkbox" id="nameActive">
+                        Name
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="text" id="nameInput" placeholder="Name enthalten...">
+                    </div>
+                </div>
+
+                <!-- Dateityp-Filter (dynamisch generiert) -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="typeActive">
+                        Dateityp
+                    </label>
+                    <div class="filter-submenu" id="typeOptionsContainer">
+                        <!-- Dynamisch generierte Checkboxes erscheinen hier -->
+                    </div>
+                </div>
+
+                <!-- Größenfilter -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="sizeActive">
+                        Größe
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="number" id="sizeFrom" placeholder="in MB">
+                        <input type="number" id="sizeTo" placeholder="bis">
+                    </div>
+                </div>
+
+                <!-- Datumsfilter -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="dateActive">
+                        Datum
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="date" id="dateFrom">
+                        <input type="date" id="dateTo" placeholder="bis">
+                    </div>
+                </div>
+
+                <!-- Ordnerfilter -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="folderActive">
+                        Ordner
+                    </label>
+                    <div class="filter-submenu">
+                        <label><input type="checkbox" class="folderOption" value="temp"> Temp</label>
+                        <label><input type="checkbox" class="folderOption" value="txt"> Txt</label>
+                        <label><input type="checkbox" class="folderOption" value="vids"> Vids</label>
+                    </div>
+                </div>
+                <button class="btn" id="applyFilterBtn">Filter anwenden</button>
+            </div>
+        </div>
+
+        <div id="result">
+            <!-- Die Datenbank-Ergebnisse werden hier angezeigt -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Deine Datenbank 2025</p>
+    </footer>
+
+    <script src="database.js?v=22"></script>
+</body>
+</html>
