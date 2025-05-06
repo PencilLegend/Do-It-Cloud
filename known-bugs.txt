@@ -1,0 +1,1 @@
+"Dateityp" filter does not keep selection after filters are applied
