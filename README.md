@@ -1,7 +1,7 @@
 # Do-It-Cloud
 Just me having fun with ai and creating something i might use oneday because i like selfmade stuff. Currently this is just some code for a website (u could call it cloud)
 
-Sorry that the guide is partly in german, its just some pasted notes, i will translate it along the way, currently you need some coding knowledge to get this to work in your infrastructure
+Sorry that the guide is partially in german, its just some pasted notes, i will translate it along the way, currently you need some coding knowledge to get this to work in your infrastructure
 
 
 
