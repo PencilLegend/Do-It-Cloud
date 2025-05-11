@@ -10,7 +10,7 @@ Guide:
 
 
 Ordner für Uploads: 
-mkdir var/WWW/html/Uploads
+mkdir var/www/html/Uploads
 Apache benutzer berrechtigungen
 (Empfehlung: die benutzer einer gruppe zuzuweisen sodass access soäter leichter ist)
 
