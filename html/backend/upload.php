@@ -45,7 +45,7 @@ if (!empty($_FILES['upload']) && isset($_POST['folder'])) {
         $fileType = mime_content_type($tmpName);
         $fileSize = $_FILES['upload']['size'][$key];
 
-        if ($fileSize > 5000 * 1024 * 1024) { // 500 MB Limit
+        if ($fileSize > 5000 * 1024 * 1024) { // 5000 MB Limit
             echo "Die Datei $fileName ist zu groß.\n";
             continue;
         }
