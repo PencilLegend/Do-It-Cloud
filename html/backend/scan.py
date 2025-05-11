@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'THG18thg18',
+    'password': 'password',
     'database': 'uploads'
 }
 
