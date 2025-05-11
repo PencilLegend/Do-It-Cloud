@@ -11,16 +11,14 @@
   <input type="file" id="fileInput" title="Wählen Sie eine Datei zum Hochladen aus" placeholder="Keine Datei ausgewählt" style="display: none;" multiple>
 
   <header>
-    <h2>Welcome to Pencil-Upload</h2>
+    <h2>Welcome</h2>
   </header>
   <main>
     <div class="upload-container">
       <div id="folder-selection">
-        <label for="folderSelect">Zielordner:</label>
+        <label for="folderSelect">target-folder:</label>
         <select id="folderSelect">
-          <option value="temp">Temp</option>
-          <option value="vids">Vids</option>
-          <option value="txt">Txt</option>
+          <!-- Dynamisch durch JavaScript befüllt -->
         </select>
       </div>
       <section id="drop-zone">
@@ -60,6 +58,6 @@
 
   <!-- JavaScript einbinden -->
   <script src="points.js"></script>
-  <script src="upload.js"></script>
+  <script src="upload.js?v=33"></script>
 </body>
 </html>

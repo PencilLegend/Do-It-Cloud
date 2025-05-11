@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 $host = "localhost";
 $user = "root";
-$password = "Password"; // Ersetze durch dein tatsächliches Passwort
+$password = "THG18thg18"; // Ersetze durch dein tatsächliches Passwort
 $database = "uploads";
 
 // Verbindung herstellen

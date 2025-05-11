@@ -2,29 +2,31 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Datenbank Viewer</title>
+    <title>database Viewer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="database.css?v=22">
+    <link rel="stylesheet" href="database.css?v=38">
 </head>
 <body>
     <header>
         <div id="navigation">
-            <button class="btn" onclick="window.location.href='../index.html'">Zurück zur Hauptseite</button>
+            <button class="btn" onclick="window.location.href='../index.html'">Home</button>
         </div>
-        <h2>Datenbank-Info-Tabelle anzeigen</h2>
+        <h2>uploads database</h2>
     </header>
 
     <main>
         <!-- Horizontaler Filterbereich -->
         <div id="horizontal-filter-panel">
-            <button class="btn" id="scanButton">Scan Manuell ausführen</button>
-            <button class="btn" id="filterToggle">Filter ein-/ausblenden</button>
+            <button class="btn" id="scanButton">manual scan</button>
+
+            <div id="filterToggle"></div>   <!-- keep this, if it works dont fix it-->
+
             <div id="mainFilterContainer" class="hidden">
                 <!-- Name-Filter -->
                 <div class="filter-item">
                     <label class="filter-heading" for="nameInput">
                         <input type="checkbox" id="nameActive">
-                        Name
+                        name
                     </label>
                     <div class="filter-submenu">
                         <input type="text" id="nameInput" placeholder="Name enthalten...">
@@ -35,7 +37,7 @@
                 <div class="filter-item">
                     <label class="filter-heading">
                         <input type="checkbox" id="typeActive">
-                        Dateityp
+                        filetype
                     </label>
                     <div class="filter-submenu" id="typeOptionsContainer">
                         <!-- Dynamisch generierte Checkboxes erscheinen hier -->
@@ -46,7 +48,7 @@
                 <div class="filter-item">
                     <label class="filter-heading">
                         <input type="checkbox" id="sizeActive">
-                        Größe
+                        size
                     </label>
                     <div class="filter-submenu">
                         <input type="number" id="sizeFrom" placeholder="in MB">
@@ -58,7 +60,7 @@
                 <div class="filter-item">
                     <label class="filter-heading">
                         <input type="checkbox" id="dateActive">
-                        Datum
+                        date
                     </label>
                     <div class="filter-submenu">
                         <input type="date" id="dateFrom">
@@ -70,7 +72,7 @@
                 <div class="filter-item">
                     <label class="filter-heading">
                         <input type="checkbox" id="folderActive">
-                        Ordner
+                        directory
                     </label>
                     <div class="filter-submenu">
                         <label><input type="checkbox" class="folderOption" value="temp"> Temp</label>
@@ -78,19 +80,34 @@
                         <label><input type="checkbox" class="folderOption" value="vids"> Vids</label>
                     </div>
                 </div>
-                <button class="btn" id="applyFilterBtn">Filter anwenden</button>
+                <button class="btn" id="applyFilterBtn">apply filter</button>
             </div>
         </div>
+
+        <!-- Neuer Button zum Erstellen eines Ordners im /mnt/nas/-Verzeichnis -->
+        <button class="btn" id="createFolderBtn">create new folder</button>
 
         <div id="result">
             <!-- Die Datenbank-Ergebnisse werden hier angezeigt -->
         </div>
     </main>
 
+    <!-- Modal für die Eingabe des Ordnernamens -->
+    <div id="folderModal">
+        <div class="modal-content">
+            <h3>folder creation</h3>
+            <input type="text" id="folderNameInput" placeholder="Ordnername">
+            <div class="modal-buttons">
+                <button class="btn" id="modalCancelBtn">cancel</button>
+                <button class="btn" id="modalCreateBtn">create</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; Deine Datenbank 2025</p>
+        <p>&copy; doitcloud 2025</p>
     </footer>
 
-    <script src="database.js?v=22"></script>
+    <script src="database.js?v=25"></script>
 </body>
 </html>

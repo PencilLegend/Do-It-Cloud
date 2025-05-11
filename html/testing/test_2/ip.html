@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.1">
-    <title>IP-Adressenrechner</title>
+    <title>IP-address calculator</title>
     <link rel="stylesheet" href="ip.css?v=3">
 </head>
 <body>
     <a href="../t-a.html" class="back-button">t-a</a>
     <div class="container">
-        <h1>IP-Adressenrechner</h1>
-        <label for="addressType">Wählen Sie den Adresstyp:</label>
+        <h1>IP-adress calculator</h1>
+        <label for="addressType">chose type</label>
         <select id="addressType" onchange="updateMetrics()">
             <option value="ipv4">IPv4</option>
             <option value="ipv6">IPv6</option>
         </select>
 
-        <label for="cidrInput">Geben Sie die Adresse in CIDR-Schreibweise ein:</label>
+        <label for="cidrInput">write the IP in CIDR notation</label>
         <input type="text" id="cidrInput" placeholder="z.B. 192.168.1.0/24 oder 2001:db8::/64" />
 
-        <button onclick="calculate()">Berechnen</button>
+        <button onclick="calculate()">calculate</button>
 
-        <h3>Ergebnisse:</h3>
+        <h3>thats it:</h3>
         <div id="ipv4Metrics" class="metrics">
-            <p>Netzwerkadresse: <span id="networkAddress">-</span></p>
-            <p>Broadcastadresse: <span id="broadcastAddress">-</span></p>
-            <p>Anzahl IP-Adressen: <span id="totalIPs">-</span></p>
-            <p>Verfügbare Host-Adressen: <span id="usableHosts">-</span></p>
-            <p>Position der angegebenen Adresse: <span id="addressPosition">-</span></p>
+            <p>network address: <span id="networkAddress">-</span></p>
+            <p>Broadcast adress: <span id="broadcastAddress">-</span></p>
+            <p>count of ip addresses: <span id="totalIPs">-</span></p>
+            <p>available host addresses: <span id="usableHosts">-</span></p>
+            <p>number/position of IP: <span id="addressPosition">-</span></p>
         </div>
         <div id="ipv6Metrics" class="metrics" style="display: none;">
-            <p>Erweiterte Adresse: <span id="expandedAddress">-</span></p>
-            <p>Komprimierte Adresse: <span id="compressedAddress">-</span></p>
-            <p>Anzahl möglicher Adressen: <span id="totalIPs">-</span></p>
-            <p>Anzahl möglicher Subnetze: <span id="subnetsPossible">-</span></p>
-            <p>Reverse DNS-Eintrag: <span id="reverseDNS">-</span></p>
+            <p>extended address: <span id="expandedAddress">-</span></p>
+            <p>comprimised address: <span id="compressedAddress">-</span></p>
+            <p>number of possible addresses: <span id="totalIPs">-</span></p>
+            <p>number of possible subnets: <span id="subnetsPossible">-</span></p>
+            <p>Reverse-DNS-entry: <span id="reverseDNS">-</span></p>
         </div>
     </div>
     <script src="ip.js"></script>

@@ -5,6 +5,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressText = document.getElementById("progressText");
     const fileInput = document.getElementById("fileInput");
 
+    // Funktion zum Laden der Ordner aus dem NAS via getFolders.php
+    function loadFolders() {
+        const folderSelect = document.getElementById("folderSelect");
+        fetch("../backend/getFolders.php")
+            .then(response => response.json())
+            .then(data => {
+                folderSelect.innerHTML = ""; // Vorherige Optionen löschen
+                // Füge jede gefundene Ordner als Option hinzu
+                data.forEach(folder => {
+                    const option = document.createElement("option");
+                    option.value = folder;
+                    option.text = folder;
+                    folderSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error("Fehler beim Laden der Ordner:", error);
+            });
+    }
+
+    // Ordner-Liste beim Laden der Seite abrufen
+    loadFolders();
+
     // Klick auf die Drop-Zone öffnet den Datei-Dialog
     dropZone.addEventListener("click", () => {
         fileInput.click();

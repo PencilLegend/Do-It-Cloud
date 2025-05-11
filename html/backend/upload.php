@@ -5,29 +5,22 @@ if (!empty($_FILES['upload']) && isset($_POST['folder'])) {
 
     // Sicherer Ordnername und Überprüfung
     $folder = basename($_POST['folder']);
-    $allowedFolders = ['temp', 'vids', 'txt'];
-
-    if (!in_array($folder, $allowedFolders)) {
+    $uploadDir = $nasBasePath . $folder . '/';
+    if (!is_dir($uploadDir)) {
         echo "Ungültiger Ordner.";
         exit;
     }
 
-    // Zielverzeichnis definieren und erstellen, falls nicht vorhanden
-    $uploadDir = $nasBasePath . $folder . '/';
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true);
-    }
-
     // Liste erlaubter MIME-Typen
     $allowedMimes = [
-        'image/jpeg', 
-        'image/png', 
-        'image/gif', 
-        'image/bmp', 
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/bmp',
         'image/webp',
-        'video/mp4', 
+        'video/mp4',
         'audio/mpeg', // für MP3 (gängig: audio/mpeg)
-        'text/plain', 
+        'text/plain',
         'text/csv',
         'application/pdf',
         'application/msword',
@@ -44,10 +37,10 @@ if (!empty($_FILES['upload']) && isset($_POST['folder'])) {
             echo "Fehler bei der Übertragung von " . basename($_FILES['upload']['name'][$key]) . ".\n";
             continue;
         }
-        
+
         $fileName   = basename($_FILES['upload']['name'][$key]);
         $uploadFile = $uploadDir . $fileName;
-        
+
         // Dateiinformationen: Typ und Größe
         $fileType = mime_content_type($tmpName);
         $fileSize = $_FILES['upload']['size'][$key];

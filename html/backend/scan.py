@@ -13,12 +13,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'password',
+    'password': 'THG18thg18',
     'database': 'uploads'
 }
 
 NAS_BASE_PATH = '/mnt/nas'
-ALLOWED_FOLDERS = ['temp', 'txt', 'vids']
 LOCAL_TIMEZONE = ZoneInfo("Europe/Berlin")
 
 # Erweiterte MIME-Mapping: MIME-Typ => vereinfachte Endung
@@ -50,16 +49,55 @@ def sync_scan():
 
     cursor = conn.cursor(dictionary=True)
 
+    # Erfassung der existierenden Ordner im NAS
+    try:
+        nas_folders = {entry for entry in os.listdir(NAS_BASE_PATH) if os.path.isdir(os.path.join(NAS_BASE_PATH, entry))}
+    except Exception as e:
+        logging.error(f"Fehler beim Auflisten des NAS-Verzeichnisses: {e}")
+        conn.close()
+        return
+
+    allowed_folders = list(nas_folders)
+
+    # Alle in der Datenbank vorhandenen Ordner abrufen
+    try:
+        cursor.execute("SELECT DISTINCT folder FROM info")
+        db_folders = {row['folder'] for row in cursor.fetchall()}
+    except Exception as e:
+        logging.error(f"Fehler bei der Abfrage der vorhandenen Ordner in der DB: {e}")
+        conn.close()
+        return
+
+    # Ordner, die in der DB stehen, aber nicht im Dateisystem existieren, ermitteln und löschen
+    missing_folders = db_folders - nas_folders
+    if missing_folders:
+        format_strings = ','.join(['%s'] * len(missing_folders))
+        delete_query = f"DELETE FROM info WHERE folder IN ({format_strings})"
+        try:
+            cursor.execute(delete_query, tuple(missing_folders))
+            conn.commit()
+            logging.info(f"Gelöschte Einträge für nicht vorhandene Ordner: {missing_folders}")
+        except Exception as e:
+            logging.error(f"Fehler beim Löschen von Einträgen nicht vorhandener Ordner: {e}")
+
     # 1. Lade alle bestehenden Einträge aus den erlaubten Ordnern
     db_files = {}
-    cursor.execute("SELECT id, name, file_size, modification_date, file_type, folder FROM info WHERE folder IN ('temp','txt','vids')")
-    for row in cursor.fetchall():
-        key = (row['folder'], row['name'])
-        db_files[key] = row
+    if allowed_folders:
+        format_strings = ','.join(['%s'] * len(allowed_folders))
+        query = f"SELECT id, name, file_size, modification_date, file_type, folder FROM info WHERE folder IN ({format_strings})"
+        try:
+            cursor.execute(query, tuple(allowed_folders))
+        except Exception as e:
+            logging.error(f"Fehler bei der Datenbankabfrage: {e}")
+            conn.close()
+            return
+        for row in cursor.fetchall():
+            key = (row['folder'], row['name'])
+            db_files[key] = row
 
     # 2. Dateisystem-Scan: Dateien aus allen erlaubten Ordnern erfassen
     fs_files = {}
-    for folder in ALLOWED_FOLDERS:
+    for folder in allowed_folders:
         folder_path = os.path.join(NAS_BASE_PATH, folder)
         if not os.path.exists(folder_path):
             logging.warning(f"Ordner '{folder_path}' existiert nicht.")

@@ -123,12 +123,11 @@ input[type="checkbox"]:checked::after {
     white-space: nowrap;
     align-items: center;
 }
-/* Beim Hover über das Filter-Item wird das Submenu eingeblendet */
 .filter-item:hover .filter-submenu {
     display: block;
 }
 
-/* Damit die dynamisch erstellten Dateityp-Checkboxes als Blockelemente erscheinen */
+/* Dynamisch erstellte Dateityp-Checkboxes */
 #typeOptionsContainer label {
     display: block;
     margin: 2px 0;
@@ -161,16 +160,85 @@ th {
     background-color: #400d0d;
 }
 
-/* Stil für den Edit-Button in der Namensspalte */
-.edit-btn {
+/* Hover Effekt für Tabellenzeilen */
+#result table tr:hover {
+    background-color: #3d0a0a;
+}
+
+/* Markierte Zeile beim Rechtsklick soll den Hover-Effekt beibehalten */
+#result table tr.context-active {
+    background-color: #3d0a0a;
+}
+
+/* Custom Context Menu */
+.custom-context-menu {
+    position: absolute;
+    background-color: #400d0d; /* Weinrot */
+    border: 1px solid #ff8c00; /* Dunkelorange */
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 200;
+}
+.custom-context-menu.hidden {
+    display: none;
+}
+.custom-context-menu .context-menu-item {
+    display: block;
     background: none;
     border: none;
-    cursor: pointer;
-    font-size: 16px;
     color: #ffff66;
-    margin-left: 5px;
-    padding: 0;
+    padding: 5px 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
 }
-.edit-btn:hover {
-    color: #ff8c00;
+.custom-context-menu .context-menu-item:hover {
+    background-color: #ff8c00;
+    color: #2b0d0d;
+}
+
+/* Verstecke das bisherige Stiftsymbol, da jetzt das Kontextmenü genutzt wird */
+.edit-btn {
+    display: none;
+}
+
+/* Modal-Stile für den Ordner-Dialog */
+#folderModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 13, 13, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#folderModal .modal-content {
+    background: #400d0d;
+    border: 2px solid #ff8c00;
+    padding: 20px;
+    border-radius: 6px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+#folderModal h3 {
+    margin-top: 0;
+    text-align: center;
+}
+#folderModal input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #660000;
+    border-radius: 4px;
+    background: #3d0a0a;
+    color: #ffff66;
+}
+#folderModal .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
