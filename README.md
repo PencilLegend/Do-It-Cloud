@@ -9,21 +9,22 @@ Sorry that the guide is partially in german, its just some pasted notes, i will 
 Guide:
 
 
-Ordner für Uploads: 
-mkdir var/www/html/Uploads
-Apache benutzer berrechtigungen
-(Empfehlung: die benutzer einer gruppe zuzuweisen sodass access soäter leichter ist)
+storage folder:      (using a nas is also explained later) 
+mkdir var/www/html/Uploads  (if you want to use a different folder you need to change this path in every file that uses it)
 
-sudo chown -R www-data:www-data /var/www/html/uploads
+
+Apache user configuration:
+
+sudo chown -R www-data:www-data /var/www/html/uploads   (skip if using a nas)
 sudo chmod -R 755 /var/www/html/uploads
 
-samba nas mounten:
+using samba nas:
 sudo apt install cifs-utils
 
-sudo mkdir -p /mnt/nas_uploads		(-p = gesamter pfad wird erstellt)
+sudo mkdir -p /mnt/nas_storage
 ###
-sudo mount -t cifs //NAS-IP/Freigabe-Ordner /mnt/nas_uploads -o    
-username=deinBenutzer,password=deinPasswort,uid=www-data,gid=www-data
+sudo mount -t cifs //NAS-IP/shared-folder  /mnt/nas_uploads -o    
+username=yourusername,password=yourpassword,uid=www-data,gid=www-data
 ### nur für einmalige benutzung
 
 für durchgängige benutzung:
