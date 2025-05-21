@@ -67,6 +67,8 @@ systemctl Restart smbd
 MySQL configuration:
 apt install pip
 pip install mysql-connector-python
+pip install flask pillow
+
 
 sudo apt-get update
 sudo apt-get install php-mysql
