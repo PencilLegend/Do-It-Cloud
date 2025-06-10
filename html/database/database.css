@@ -1,0 +1,316 @@
+/* Globales dunkles Design */
+body {
+    background-color: #2b0d0d; /* Dunkelrot */
+    color: #ffff66; /* Helles Gelb */
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Header */
+header {
+    background-color: #400d0d; /* Weinrot */
+    padding: 10px;
+}
+
+#navigation button {
+    background-color: #ff8c00; /* Dunkelorange */
+    color: #ffff66;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#navigation button:hover {
+    background-color: #d97300;
+}
+
+/* Allgemeine Buttongestaltung */
+.btn {
+    background-color: #ff8c00; /* Dunkelorange */
+    color: #ffff66; /* Hellgelb */
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #d97300;
+}
+
+/* Horizontaler Filterbereich */
+#horizontal-filter-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #660000;
+    flex-wrap: wrap;
+    background-color: #3d0a0a;
+}
+
+/* Hauptfiltercontainer */
+#mainFilterContainer {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Verstecken */
+.hidden {
+    display: none;
+}
+
+/* Filter-Items */
+.filter-item {
+    position: relative;
+    padding: 5px;
+    align-items: center;
+}
+
+/* Überschrift inkl. Checkbox */
+.filter-heading {
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Angepasste Checkboxes */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #b8860b;
+    border-radius: 3px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: #ffff99;
+}
+input[type="checkbox"]:checked {
+    background-color: #ffff99;
+    vertical-align: middle;
+}
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><line x1="3" y1="3" x2="13" y2="13" stroke="black" stroke-width="3"/><line x1="13" y1="3" x2="3" y2="13" stroke="black" stroke-width="3"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Filter-Submenu – standardmäßig versteckt */
+.filter-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #400d0d; /* Weinrot */
+    border: 1px solid #660000;
+    padding: 5px;
+    z-index: 10;
+    white-space: nowrap;
+    align-items: center;
+}
+.filter-item:hover .filter-submenu {
+    display: block;
+}
+
+/* Dynamisch erstellte Dateityp-Checkboxes */
+#typeOptionsContainer label {
+    display: block;
+    margin: 2px 0;
+}
+
+/* Eingabefelder */
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    background-color: #3d0a0a;
+    border: 1px solid #660000;
+    color: #ffff66;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+/* Tabelle */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #660000;
+    padding: 8px;
+    text-align: left;
+    color: #ffff66;
+}
+th {
+    background-color: #400d0d;
+}
+
+/* Hover Effekt für Tabellenzeilen */
+#result table tr:hover {
+    background-color: #3d0a0a;
+}
+
+/* Markierte Zeile beim Rechtsklick soll den Hover-Effekt beibehalten */
+#result table tr.context-active {
+    background-color: #3d0a0a;
+}
+
+/* Custom Context Menu */
+.custom-context-menu {
+    position: absolute;
+    background-color: #400d0d; /* Weinrot */
+    border: 1px solid #ff8c00; /* Dunkelorange */
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 200;
+}
+.custom-context-menu.hidden {
+    display: none;
+}
+.custom-context-menu .context-menu-item {
+    display: block;
+    background: none;
+    border: none;
+    color: #ffff66;
+    padding: 5px 10px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+.custom-context-menu .context-menu-item:hover {
+    background-color: #ff8c00;
+    color: #2b0d0d;
+}
+
+/* Verstecke das bisherige Stiftsymbol, da jetzt das Kontextmenü genutzt wird */
+.edit-btn {
+    display: none;
+}
+
+/* Modal-Stile für den Ordner-Dialog */
+#folderModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(43, 13, 13, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#folderModal .modal-content {
+    background: #400d0d;
+    border: 2px solid #ff8c00;
+    padding: 20px;
+    border-radius: 6px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+#folderModal h3 {
+    margin-top: 0;
+    text-align: center;
+}
+#folderModal input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #660000;
+    border-radius: 4px;
+    background: #3d0a0a;
+    color: #ffff66;
+}
+#folderModal .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+/* Basis-Styling für das Context Menu */
+.custom-context-menu {
+  position: absolute;
+  background: #4d0000;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.custom-context-menu.hidden {
+  display: none;
+}
+
+/* Styling der Menü-Einträge */
+.context-menu-item {
+  display: block;
+  padding: 8px 12px;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  text-align: left;
+  width: 100%;
+}
+
+.context-menu-item:hover {
+  background: #f0f0f0;
+}
+
+/* Hebt das Element beim Inline-Edit hervor */
+.inline-rename {
+  border-bottom: 1px solid #ffff66;
+}
+
+/* Modal Overlay für die Bestätigungsabfrage */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* Modal Content Styling */
+.modal-content {
+  background-color: #400d0d;
+  border: 2px solid #ff8c00;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Directory filter textarea */
+#folderInput {
+    width: 300px;
+    height: 100px;
+    background-color: #3d0a0a;
+    border: 1px solid #660000;
+    color: #ffff66;
+    padding: 8px;
+    resize: vertical;
+}
+
+.filter-submenu {
+    min-width: 320px;
+}

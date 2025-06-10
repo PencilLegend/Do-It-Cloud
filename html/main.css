@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #7f7f7f; /* Dunkleres Hellgrau */
+    color: white; /* Weiße Schrift */
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #6a6a6a; /* Noch dunkleres Grau beim Hover */
+}
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+
+section {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: #bababa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease;
+}
+    
+ section:hover {
+    background-color: #8a8a8a; /* Change background color to black */
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Folded Flyer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .a4-container {
+            width: 21cm;
+            height: 29.7cm;
+            background: #f5f5f5;
+            box-shadow: 
+                inset 0 0 30px rgba(0,0,0,0.1),
+                -2px -2px 20px rgba(0,0,0,0.08);
+            position: relative;
+            margin: auto;
+        }
+
+        .flip-container {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            perspective: 2000px;
+            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .front {
+            background: #ffffff;
+            padding: 1cm 2cm;
+            z-index: 2;
+        }
+
+        .back {
+            background: #f8f9fa;
+            padding: 1cm 2cm;
+            transform: rotateY(180deg) translateX(-100%);
+            position: absolute;
+            top: 0;
+            right: -100%;
+            box-shadow:
+                5px 0 15px rgba(0,0,0,0.1),
+                inset 5px 0 10px rgba(0,0,0,0.05);
+        }
+
+        .image-section {
+            width: 90%;
+            height: 45%;
+            margin: 2% 0;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.6s ease-out;
+        }
+
+        .front .image-section:nth-child(even) {
+            transform: skewY(-5deg);
+        }
+
+        .back .image-section:nth-child(odd) {
+            transform: skewY(5deg);
+        }
+
+        .image-mask {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .front .image-mask {
+            clip-path: polygon(
+                0% 0,
+                90% 10%,
+                95% 50%,
+                100% 90%,
+                80% 100%,
+                20% 100%,
+                5% 50%,
+                0% 10%
+            );
+        }
+
+        .back .image-mask {
+            clip-path: polygon(
+                0% 0,
+                95% 10%,
+                80% 50%,
+                100% 90%,
+                20% 100%,
+                90% 100%,
+                5% 50%,
+                0% 10%
+            );
+        }
+
+        .flip-button {
+            position: absolute;
+            bottom: 1cm;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .flip-button:hover {
+            background: #0056b3;
+        }
+
+        /* Image placeholders */
+        .front-section1 { background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect fill="%23007bff" /></svg>'); }
+        .front-section2 { background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect fill="%23ff5722" /></svg>'); }
+        .front-section3 { background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect fill="%239c27b0" /></svg>'); }
+        
+        .back-section4 { background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect fill="%235cb85c" /></svg>'); }
+        .back-section5 { background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect fill="%23e74c3c" /></svg>'); }
+        .back-section6 { background-image: url('data:image/svg+xml,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect fill="%2359b34d" /></svg>'); }
+
+        /* Media query for mobile */
+        @media (max-width: 768px) {
+            .a4-container {
+                transform: scale(0.6);
+                margin-top: 50px;
+            }
+            
+            body {
+                background: #f5f5f5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-container">
+        <div class="flip-container" id="flipContainer">
+            <!-- Front Side -->
+            <div class="front">
+                <div class="image-section front-section1"></div>
+                <div class="image-section front-section2"></div>
+                <div class="image-section front-section3"></div>
+            </div>
+            
+            <!-- Back Side -->
+            <div class="back">
+                <div class="image-section back-section4"></div>
+                <div class="image-section back-section5"></div>
+                <div class="image-section back-section6"></div>
+            </div>
+        </div>
+        
+        <button onclick="flipPage()" class="flip-button">Flip Flyer</button>
+    </div>
+
+    <script>
+        let isFlipped = false;
+        
+        function flipPage() {
+            const container = document.getElementById('flipContainer');
+            container.style.transform = `rotateY(${isFlipped ? 0 : 180}deg)`;
+            isFlipped = !isFlipped;
+        }
+
+        // Optional: Auto-flip for demonstration
+        setInterval(() => {
+            if(window.innerWidth > 768) flipPage();
+        }, 5000);
+    </script>
+</body>
+</html>

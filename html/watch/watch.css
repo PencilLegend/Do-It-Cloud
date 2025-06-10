@@ -1,0 +1,146 @@
+body {
+    background-color: #2b0d0d;
+    color: #ffff66;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    background-color: #400d0d;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #ff8c00;
+    color: #ffff66;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #d97300;
+}
+
+#mediaList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.media-item {
+    background: #400d0d;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.media-item:hover {
+    transform: scale(1.05);
+    background: #4d0000;
+}
+
+.media-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.media-name {
+    word-break: break-word;
+}
+
+#mediaPlayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.player-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+}
+
+video {
+    max-width: 90%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+}
+
+audio {
+    width: 80%;
+    max-width: 800px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.close-player {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.media-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1010;
+    display: flex;
+    gap: 10px;
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.zoom-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#imageViewer {
+    max-width: 90%;
+    max-height: 90vh;
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+}
+
+#imageViewer.zoomed {
+    cursor: move;
+}

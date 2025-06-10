@@ -1,0 +1,266 @@
+/* --- Grundlegende Einstellungen --- */
+body {
+  background-color: #6A656B; /* Dunkelgrau als Hintergrund */
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 20px; /* Etwas größere Schrift */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Header --- */
+header {
+  background-color: #0B090B; /* Schwarzer Akzent */
+  padding: 10px;  /* Schlanker Header */
+  text-align: center;
+  font-size: 1.4em;
+  border-bottom: 2px solid #61A0AF;
+}
+
+
+
+
+
+#navigation button {
+    background-color: #003781; /* Dunkelorange */
+    color: #ffffff;
+    border: 2px solid #61A0AF;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#navigation button:hover {
+    background-color: #114892;
+}
+
+
+
+
+
+/* --- Footer --- */
+footer {
+  background-color: #0B090B;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: auto;
+  width: 100%;
+}
+
+/* --- Hauptbereich --- */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+/* Container für den Upload-Bereich (links) */
+.upload-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  width: 65%;
+}
+
+/* --- Ordnerauswahl --- */
+#folder-selection {
+  text-align: center;
+  font-size: 1.05em;
+}
+
+#folder-selection label {
+  margin-right: 10px;
+}
+
+#folder-selection select {
+  /* Neuen, nativen Browser-Styling unterdrücken */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #96C9DC;
+  color: #0B090B;
+  padding: 11px;
+  font-size: 1.05em;
+  border: 2px solid #61A0AF;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, border-color 0.3s;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+#folder-selection select:hover { 
+  background-color: #61A0AF; 
+  border-color: #0B090B; 
+}
+
+/* --- Drop-Zone --- */
+#drop-zone {
+  position: relative;
+  width: 80%;
+  max-width: 700px;
+  padding: 60px;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: #61A0AF;
+  border: 3px dashed #96C9DC;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Drop-Zone: Hover- und Dragover-Effekt */
+#drop-zone:hover, #drop-zone.dragover {
+  background-color: #5293A3;
+  border-color: #0B090B;
+  cursor: pointer;
+}
+
+/* Container für generierte Punkte in der Drop-Zone */
+#drop-zone .points-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Damit der Inhalt (Text) sichtbar bleibt */
+#drop-zone .content {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Allgemeine Regeln für Punkte --- */
+.point {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* --- Fortschrittsanzeige --- */
+#upload-progress {
+  display: none;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 10px;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #C8C1CA;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #61A0AF;
+  border-radius: 10px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* --- Platzhalter (Feature-Boxen) --- */
+.placeholder-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding-left: 300px;
+}
+
+.placeholder {
+  background-color: #96C9DC;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 15px;
+  border: 2px solid #0D1B2A;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  aspect-ratio: 9 / 16;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.placeholder .points-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.placeholder .content {
+  position: relative;
+  z-index: 2;
+}
+
+.placeholder:hover {
+  border-color: #0B090B;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.placeholder h2 {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #0B090B;
+  width: 80%;
+  text-align: center;
+}
+
+.placeholder p {
+  margin: 10px 0 0 0;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Dekorative Akzente in den Platzhaltern */
+.placeholder::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  background-color: #0B090B;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* --- Zusätzliche Feinheiten --- */
+a {
+  color: #61A0AF;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #000000;
+}

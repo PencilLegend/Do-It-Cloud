@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Folder Database Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div id="navigation">
+            <button class="btn" onclick="window.location.href='../../index.html'">Home</button>
+            <button class="btn" onclick="window.location.href='../database.html'">File View</button>
+        </div>
+        <h2>Folder Database</h2>
+    </header>
+
+    <main>
+        <div id="horizontal-filter-panel">
+            <button class="btn" id="scanButton">Scan Folders</button>
+
+            <div id="filterToggle"></div>
+
+            <div id="mainFilterContainer" class="hidden">
+                <!-- Name Filter -->
+                <div class="filter-item">
+                    <label class="filter-heading" for="nameInput">
+                        <input type="checkbox" id="nameActive">
+                        name
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="text" id="nameInput" placeholder="Name contains...">
+                    </div>
+                </div>
+
+                <!-- Size Filter -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="sizeActive">
+                        size
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="number" id="sizeFrom" placeholder="from MB">
+                        <input type="number" id="sizeTo" placeholder="to MB">
+                    </div>
+                </div>
+
+                <!-- Date Filter -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="dateActive">
+                        date
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="date" id="dateFrom">
+                        <input type="date" id="dateTo">
+                    </div>
+                </div>
+
+                <!-- Parent Folder Filter -->
+                <div class="filter-item">
+                    <label class="filter-heading">
+                        <input type="checkbox" id="parentFolderActive">
+                        parent folder
+                    </label>
+                    <div class="filter-submenu">
+                        <input type="text" id="parentFolderInput" placeholder="Parent folder...">
+                    </div>
+                </div>
+
+                <button class="btn" id="applyFilterBtn">apply filter</button>
+            </div>
+        </div>
+
+        <div id="result">
+            <!-- Folder database results will be displayed here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; doitcloud 2025</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

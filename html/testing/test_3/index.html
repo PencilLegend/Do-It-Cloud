@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interaktive Bild-Animation mit Front- & Rückseite (angepasst)</title>
+  <style>
+    /* Basis-Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      user-select: none;
+    }
+    /* Container für die Bildkomposition */
+    .composite {
+      width: 300px;
+      height: 424px;
+      display: flex;
+      perspective: 1000px;
+      margin-bottom: 40px;
+      transition: transform 0.3s ease-out;
+    }
+    /* Jedes Panel nimmt gleichen Platz ein */
+    .panel {
+      flex: 1;
+      position: relative;
+    }
+    /* Bilder füllen ihr Panel komplett */
+    .panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.3s ease-out;
+    }
+    /* Horizontaler Slider */
+    #rotation-control {
+      width: 300px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    /* Verschiebbarer Punkt */
+    #slider-dot {
+      width: 30px;
+      height: 30px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      left: 270px;   /* rechts = 0° (Vorderseite) */
+      top: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Bildkomposition: jedes Bild hat Front- und Rückseiten-Datei -->
+  <div class="composite" id="composite">
+    <div class="panel">
+      <img 
+        data-front="./images/image1.png" 
+        data-back="./images/image4.png" 
+        src="./images/image1.png" 
+        alt="Bild 1" />
+    </div>
+    <div class="panel">
+      <img 
+        data-front="./images/image2.png" 
+        data-back="./images/image5.png" 
+        src="./images/image2.png" 
+        alt="Bild 2" />
+    </div>
+    <div class="panel">
+      <img 
+        data-front="./images/image3.png" 
+        data-back="./images/image6.png" 
+        src="./images/image3.png" 
+        alt="Bild 3" />
+    </div>
+  </div>
+
+  <!-- Horizontaler Slider -->
+  <div id="rotation-control">
+    <div id="slider-dot"></div>
+  </div>
+
+  <script>
+    const composite = document.getElementById('composite');
+    const sliderDot = document.getElementById('slider-dot');
+    const sliderControl = document.getElementById('rotation-control');
+
+    // Start: rechts entspricht 0° (Vorderseite)
+    sliderDot.style.left = (sliderControl.clientWidth - sliderDot.offsetWidth) + "px";
+
+    let isDragging = false;
+    let controlRect = sliderControl.getBoundingClientRect();
+    const dotWidth = sliderDot.offsetWidth;
+
+    // Start des Drag-Vorgangs
+    sliderDot.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      e.preventDefault();
+    });
+
+    // Während des Draggens: Slider-Dot positionieren & Rotation berechnen
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+
+      // Berechne die horizontale Position bezogen auf den Slider
+      let x = e.clientX - controlRect.left;
+      const minX = 0;
+      const maxX = sliderControl.clientWidth - dotWidth;
+      if (x < minX) x = minX;
+      if (x > maxX) x = maxX;
+      sliderDot.style.left = x + "px";
+
+      // Mapping: links (0) → 180° (Rückseite), rechts (maxX) → 0° (Vorderseite)
+      let percentage = x / maxX;
+      let rotationY = (1 - percentage) * 180;
+      composite.style.transform = `rotateY(${rotationY}deg)`;
+
+      // Abhängig vom Winkel:
+      // Bei Frontseite (< 90°) laden wir die Frontbilder und setzen keine Spiegelung.
+      // Bei Rückseite (>= 90°) laden wir die Rückseitenbilder und wenden scaleX(-1) an,
+      // um die gespiegelte Darstellung zu korrigieren.
+      document.querySelectorAll('.panel img').forEach(img => {
+        if (rotationY < 90) {
+          img.style.transform = 'scaleX(1)';
+          let frontSrc = img.getAttribute('data-front');
+          if (img.getAttribute('src') !== frontSrc) {
+            img.setAttribute('src', frontSrc);
+          }
+        } else {
+          img.style.transform = 'scaleX(-1)';
+          let backSrc = img.getAttribute('data-back');
+          if (img.getAttribute('src') !== backSrc) {
+            img.setAttribute('src', backSrc);
+          }
+        }
+      });
+    });
+
+    // Ende des Drag-Vorgangs
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        controlRect = sliderControl.getBoundingClientRect();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      controlRect = sliderControl.getBoundingClientRect();
+    });
+  </script>
+</body>
+</html>

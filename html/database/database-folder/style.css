@@ -1,0 +1,24 @@
+/* Inherit base styles from database.css */
+@import url('../database.css');
+
+/* Additional folder-specific styles */
+#result table td:first-child {
+    white-space: nowrap;
+}
+
+/* Folder icon and indentation styles */
+.folder-icon {
+    margin-right: 5px;
+    color: #ff8c00;
+}
+
+/* Parent folder filter specific styles */
+#parentFolderInput {
+    width: 200px;
+}
+
+/* Table row hover effect */
+#result table tr:hover {
+    background-color: #3d0a0a;
+    cursor: pointer;
+}
