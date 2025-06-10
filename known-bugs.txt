@@ -1,1 +1,1 @@
-"Dateityp" filter does not keep selection after filters are applied
+the watching site does not currently work as intended, this will come as a new feature in another branch when i get to implementing user accounts and such, until than watching the content is done by going into "database" -> "folder view" and rightclick on the folder you want to watch some content from (this does not work at the moment either)
