@@ -1,5 +1,12 @@
 # Do-It-Cloud
-Just me having fun with ai and creating something i might use oneday because i like selfmade stuff. Currently this is just some code for a website (u could call it cloud)
+a super light weight super minimal selfhosted open source nas web application. store and organize your files with Do-It-Cloud
+
+
+
+
+
+
+Note: This whole project is just me having fun with ai and creating something i might use oneday because i like selfmade stuff. Currently this is just some code for a website (u could call it cloud)
 
 Sorry that the guide is partially in german, its just some pasted notes, i will translate it along the way, currently you need some coding knowledge to get this to work in your infrastructure
 
@@ -81,6 +88,9 @@ sudo mysql_secure_installation
 
 mysql -u root -p
 
+creat
+
+
 CREATE DATABASE IF NOT EXISTS uploads;
 USE uploads;
 CREATE TABLE IF NOT EXISTS info (
@@ -92,6 +102,20 @@ CREATE TABLE IF NOT EXISTS info (
   extra_info TEXT,
   folder VARCHAR(50) NOT NULL
 );
+
+
+USE uploads
+CREATE TABLE IF NOT EXISTS folders (
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   name VARCHAR(255) NOT NULL,
+   path VARCHAR(512) NOT NULL,
+   size BIGINT NOT NULL DEFAULT 0,
+   file_count INT NOT NULL DEFAULT 0,
+   modification_date DATETIME,
+   parent_folder VARCHAR(255),
+   depth INT NOT NULL DEFAULT 0,
+   UNIQUE KEY unique_path (path)
+   )
 
 
 
