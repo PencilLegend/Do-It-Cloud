@@ -88,7 +88,6 @@ sudo mysql_secure_installation
 
 mysql -u root -p
 
-creat
 
 
 CREATE DATABASE IF NOT EXISTS uploads;
